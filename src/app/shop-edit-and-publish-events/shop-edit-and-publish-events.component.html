@@ -1,0 +1,84 @@
+<app-navbar></app-navbar>
+<div *ngIf="currentShop" class="container">
+<h3>Shop Settings</h3>
+<div class="input-group mb-3">
+  <div class="inpurt-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Shop Name</span>
+  </div>
+  <input type="text" [(ngModel)]="currentShop.name" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <div class="inpurt-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Shop Owner</span>
+  </div>
+  <input type="text" class="form-control" placeholder="Recipient's username" [(ngModel)]="currentShop.owner_name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+</div>
+
+
+  <div class="input-group mb-3">
+    <div class="inpurt-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Shop Owner Email</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Recipient's username" [(ngModel)]="currentShop.email" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  </div>
+
+
+  <div class="input-group mb-3">
+    <div class="inpurt-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Shop Owner Phone</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Recipient's username" [(ngModel)]="currentShop.phone" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  </div>
+
+
+  <div class="input-group mb-3">
+    <div class="inpurt-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Shop Website</span>
+    </div>
+    <input type="text" class="form-control" placeholder="Recipient's username" [(ngModel)]="currentShop.website" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  </div>
+
+<label for="basic-url">Twitter</label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon3">www.twitter.com/</span>
+  </div>
+  <input type="text" [(ngModel)]="currentShop.twitter" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+</div>
+
+  <label for="basic-url">Instagram</label>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3">www.instagram.com/</span>
+    </div>
+    <input type="text" [(ngModel)]="currentShop.instagram" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+  </div>
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Bio</span>
+  </div>
+  <textarea class="form-control" [(ngModel)]="currentShop.bio" aria-label="With textarea"></textarea>
+</div>
+
+    <div class="form-group">
+      <input type="email" class="form-control" id="exampleInputEmail1"  [ngModelOptions]="{standalone: true}" [(ngModel)]="newTag" placeholder="Add a new Tag. Get Discovered!">
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-primary" (click)="addTag()">Add Tag</button>
+
+
+
+  <button *ngFor="let tag of currentShop.tags; let i = index" type="button" (click)="deleteTag(i)" class="btn btn-info">
+    {{tag}} <span class="badge badge-light">X</span>
+  </button>
+
+  <div class="container">
+    <br>
+  <button (click)="saveShop()" class="btn btn-primary">Update Shop Settings</button>
+  </div>
+
+
+</div>

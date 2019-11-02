@@ -11,6 +11,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {FormsModule} from '@angular/forms';
 import { ShopProfileComponent } from './shop-profile/shop-profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ShopEditAndPublishEventsComponent } from './shop-edit-and-publish-events/shop-edit-and-publish-events.component';
 
 
 
@@ -19,7 +20,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     AppComponent,
     HomeComponent,
     ShopProfileComponent,
-    NavbarComponent
+    NavbarComponent,
+    ShopEditAndPublishEventsComponent
   ],
   imports: [
     BrowserModule,
