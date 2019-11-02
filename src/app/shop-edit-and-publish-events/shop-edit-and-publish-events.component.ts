@@ -35,9 +35,27 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
         console.log("Document data:", doc.data());
       } else {
         console.log("No such document!");
+        this.currentShop = {};
+        this.currentShop['name'] = '';
+        this.currentShop['twitter'] = '';
+        this.currentShop['instagram'] = '';
+        this.currentShop['bio'] = '';
+        this.currentShop['website'] = '';
+        this.currentShop['email'] = '';
+        this.currentShop['phone'] = '';
+        this.currentShop['tags'] = [];
       }
-    }).catch(function(error) {
+    }).catch((error) => {
       console.log("Error getting document:", error);
+       this.currentShop = {};
+       this.currentShop['name'] = '';
+       this.currentShop['twitter'] = '';
+       this.currentShop['instagram'] = '';
+       this.currentShop['bio'] = '';
+       this.currentShop['website'] = '';
+       this.currentShop['email'] = '';
+       this.currentShop['phone'] = '';
+       this.currentShop['tags'] = [];
     });
   }
 
@@ -53,7 +71,7 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
 
 
   saveShop() {
-    this.db.doc('shops/' + this.shop_id).set(this.currentShop).finally( (response) => {
+    this.db.doc('shops/' + this.shop_id).set(this.currentShop).finally( () =>
       console.log('saved???');
     });
 
