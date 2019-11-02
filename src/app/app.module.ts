@@ -7,18 +7,28 @@ import { HomeComponent } from './home/home.component';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {FormsModule} from '@angular/forms';
+import { ShopProfileComponent } from './shop-profile/shop-profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ShopProfileComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    FormsModule,
+
 
   ],
   providers: [],

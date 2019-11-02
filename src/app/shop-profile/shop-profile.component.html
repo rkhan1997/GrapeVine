@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<div *ngIf="currentShop">
+
+
+  <div class="card">
+    <div class="card-header">
+      Shop
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{currentShop.name}}</h5>
+      <p class="card-text">Instagram: {{currentShop.instagram}}</p>
+      <p class="card-text">Twitter: {{currentShop.twitter}}</p>
+      <p class="card-text">Email: {{currentShop.email}} or Phone: {{currentShop.phone}} - {{currentShop.owner_name}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+
+      <span *ngFor="let tag of currentShop.tags" class="badge badge-info">{{tag}}</span>
+    </div>
+  </div>
+{{currentShop.name}}
+{{currentShop.bio}}
+{{currentShop.twitter}}
+</div>

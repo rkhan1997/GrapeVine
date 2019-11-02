@@ -1,3 +1,51 @@
-<p>
-  home works!
-</p>
+<app-navbar></app-navbar>
+<br>
+
+<div class="container-fluid">
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="email" class="form-control" id="exampleInputEmail1"  [ngModelOptions]="{standalone: true}" [(ngModel)]="newTag" placeholder="Filter pop up shops by tags">
+    </div>
+    <br>
+
+    <button type="submit" class="btn btn-primary" (click)="addTag()">Add Tag</button>
+  </form>
+
+
+  <button *ngFor="let tag of tagFilter; let i = index" type="button" (click)="deleteTag(i)" class="btn btn-info">
+    {{tag}} <span class="badge badge-light">X</span>
+  </button>
+
+
+</div>
+<br>
+
+<div class="list-group">
+
+
+<!--  end_time November 4, 2019 at 6:00:00 AM UTC-5-->
+<!--  inside_or_outside ""-->
+<!--  latitude ""-->
+<!--  location "571 formwalt street Atlanta Ga"-->
+<!--  longitude ""-->
+<!--  notes "come thru the back back back"-->
+<!--  start_time November 4, 2019 at 9:00:00 AM UTC-5-->
+<!--  (timestamp)-->
+
+<!--  "longitude": "-84.43620729999998",-->
+<!--  "latitude": "33.7308735",-->
+  <div class="list-group-item list-group-item-action" *ngFor="let event of events | async">
+    <h5 class="mb-1">{{event.shop_name}} @ {{event.location}}
+<span *ngIf="event.start_time.toDate().getFullYear() === rightNow.getFullYear() && event.start_time.toDate().getMonth() === rightNow.getMonth() && event.start_time.toDate().getDate() === rightNow.getDate() && event.start_time.toDate() > rightNow " class="badge badge-info">Today</span>
+      <span *ngIf="event.start_time.toDate() < rightNow && event.end_time.toDate().getHours() > rightNow.getHours() + 1 " class="badge badge-success">Ongoing</span>
+      <span *ngIf="event.start_time.toDate().getFullYear() === rightNow.getFullYear() && event.start_time.toDate().getMonth() === rightNow.getMonth() && event.start_time.toDate().getDate() === rightNow.getDate() && event.end_time.toDate().getHours() <= rightNow.getHours() + 1 && event.end_time.toDate() > rightNow" class="badge badge-danger">Ending Soon</span> </h5>
+    <small class="text-muted">From {{event.start_time.toDate()}}  to {{event.end_time.toDate()}}</small>
+    <p class="text-muted">{{event.inside_or_outside}}</p>
+
+  <p class="mb-1">Notes: {{event.notes}}</p>
+    <p class="mb-1">Twitter: {{event.twitter}}</p>
+
+
+  </div>
+</div>
+
