@@ -72,10 +72,8 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
 
   saveShop() {
     this.db.doc('shops/' + this.shop_id).set(this.currentShop).finally( () =>
-      console.log('saved???');
+      console.log('saved???'));
     });
 
   }
 
-
-}
