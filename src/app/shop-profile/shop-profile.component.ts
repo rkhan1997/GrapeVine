@@ -13,6 +13,7 @@ export class ShopProfileComponent implements OnInit {
 
   currentShop: any;
   shop_id: string;
+  eventsByShopOwner: Observable<any[]>;
   constructor(private db: AngularFirestore, private auth: AngularFireAuth, private route: ActivatedRoute) {
 
   }
@@ -41,6 +42,9 @@ export class ShopProfileComponent implements OnInit {
       }).catch(function(error) {
         console.log("Error getting document:", error);
       });
+
+
+      this.eventsByShopOwner = this.db.collection('shop_events', ref => ref.where('shop_id', '==', this.shop_id)).valueChanges();
   }
 
 }

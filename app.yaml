@@ -1,0 +1,8 @@
+runtime: python37
+service: grapevine
+handlers:
+- url: /
+  static_files: dist/grapevine/index.html
+  upload: dist/ALBGM/index.html
+- url: /
+  static_dir: dist/grapevine

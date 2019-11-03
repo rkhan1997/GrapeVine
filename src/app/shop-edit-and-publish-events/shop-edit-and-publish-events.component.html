@@ -86,32 +86,30 @@
 
 
 <div class="contanier">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Event Name:</span>
-    </div>
-    <input type="text" class="form-control" aria-label="event name">
 
-
-
-  </div>
   <div class="input-group">
     <div class="input-group-prepend">
       <span class="input-group-text">Notes:</span>
     </div>
-    <textarea class="form-control" aria-label="With textarea"></textarea>
+    <textarea class="form-control" [(ngModel)]="newEventNotes" aria-label="With textarea"></textarea>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Location:</span>
+    </div>
+    <input type="text" class="form-control"  [(ngModel)]="newLocation" placeholder="Address">
   </div>
   <div class="custom-control custom-switch">
-    <input type="checkbox" class="custom-control-input" id="customSwitch1">
-    <label class="custom-control-label" for="customSwitch1">Outside Pop shop event</label>
+    <input type="checkbox" [(ngModel)]="newEventOutsideOrInside" class="custom-control-input" id="customSwitch1">
+    <label class="custom-control-label"  for="customSwitch1">{{ newEventOutsideOrInside ? 'Event is Outside' : 'Event is Inside' }}</label>
   </div>
-  <ngb-datepicker #d></ngb-datepicker>
-  <ngb-timepicker [meridian]="true"></ngb-timepicker>
+  <ngb-datepicker [(ngModel)]="newEventStartDate" #d1></ngb-datepicker>
+  <ngb-timepicker [(ngModel)]="newEventStartTime" [meridian]="true"></ngb-timepicker>
 
 
 
-  <ngb-datepicker #d></ngb-datepicker>
-  <ngb-timepicker [meridian]="true"></ngb-timepicker>
+  <ngb-datepicker [(ngModel)]="newEventEndDate" #d2></ngb-datepicker>
+  <ngb-timepicker [(ngModel)]="newEventEndTime" [meridian]="true"></ngb-timepicker>
   <div class="container">
     <br>
     <button (click)="saveEvent()" class="btn btn-primary">Create Event</button>

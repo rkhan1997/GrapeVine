@@ -2,21 +2,28 @@
 <div *ngIf="currentShop">
 
 
-  <div class="card">
-    <div class="card-header">
-      Shop
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">{{currentShop.name}}</h5>
-      <p class="card-text">Instagram: {{currentShop.instagram}}</p>
-      <p class="card-text">Twitter: {{currentShop.twitter}}</p>
-      <p class="card-text">Email: {{currentShop.email}} or Phone: {{currentShop.phone}} - {{currentShop.owner_name}}</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+  <div class="jumbotron m-2">
+    <h1 class="display-4">{{currentShop.name}}</h1>
+    <p class="lead">Owner: {{currentShop.owner_name}} <br> Email: {{currentShop.email}} <br> Phone: {{currentShop.phone}}</p>
+    <hr class="my-4">
+    <p> {{currentShop.bio}}</p>
 
-      <span *ngFor="let tag of currentShop.tags" class="badge badge-info">{{tag}}</span>
+    <h4 >Tags:
+    <span *ngFor="let tag of currentShop.tags" class="badge badge-pill badge-info ml-2"> {{tag}}</span>
+    </h4>
+
+  </div>
+<div class="card-columns">
+  <div *ngFor="let item of eventsByShopOwner | async" class="card">
+    <div class="card-body">
+      <h5 class="card-title">@ {{item.location}}</h5>
+      <p class="card-text">From {{item.start_time.toDate().toLocaleString('en-US', { timeZone:'America/New_York'})}}
+        to {{item.end_time.toDate().toLocaleString('en-US', {timeZone: 'America/New_York'})}}</p>
     </div>
   </div>
-{{currentShop.name}}
-{{currentShop.bio}}
-{{currentShop.twitter}}
+</div>
+
+
+
+
 </div>

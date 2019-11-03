@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   tagFilter: string[];
   events: Observable<any[]>;
   rightNow: Date;
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private router: Router) { }
 
   ngOnInit() {
     this.newTag = '';
@@ -30,6 +31,15 @@ export class HomeComponent implements OnInit {
   addTag() {
     this.tagFilter.push( '' + this.newTag.toString() );
     this.newTag = '';
+  }
+
+  goToProfile(shop_id:string) {
+    this.router.navigateByUrl('/shop_profile/' + shop_id);
+  }
+
+
+  searchByTag(){
+    this.events = this.db.collection('shop_events', ref => ref.where('tags', 'array-contains', this.newTag ) ).valueChanges();
   }
 
 }

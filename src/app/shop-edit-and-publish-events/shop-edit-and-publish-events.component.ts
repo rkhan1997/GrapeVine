@@ -22,10 +22,25 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
   newEventEndTime: any;
   newEventNotes: string;
   newEventOutsideOrInside: boolean;
+  newLocation: string;
 
   constructor(private db: AngularFirestore, private auth: AngularFireAuth, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.newEventStartDate = {year: 2019, month:8, day: 16}
+    this.newEventEndDate = {year:2019, month:8, day: 16}
+    this.newLocation = ''
+    this.newEventNotes = ''
+
+
+
+    this.newEventOutsideOrInside = false;
+    const currentDate = new Date();
+
+
+    this.newEventEndTime = { hour: 3, minute: 30, second: 0 }
+    this.newEventStartTime = { hour: 3, minute: 30, second: 0 };
 
     this.shop_id = this.route.snapshot.paramMap.get("shop_id");
 
@@ -87,12 +102,69 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
   }
 
   saveEvent() {
-    console.log(this.newEventEndDate);
-    console.log(this.newEventEndTime);
-    console.log(this.newEventStartDate);
-    console.log(this.newEventStartTime);
-    console.log(this.newEventNotes);
-    console.log(this.newEventEndDate);
+
+
+    // " Object { year: 2019, month: 11, day: 15 }\n' +
+    // 'shop-edit-and-publish-events.component.ts:90:12\n' +
+    // 'Object { hour: 3, minute: 30, second: 0 }\n' +
+    // 'shop-edit-and-publish-events.component.ts:91:12\n' +
+    // 'Object { year: 2019, month: 11, day: 15 }\n' +
+    // 'shop-edit-and-publish-events.component.ts:92:12\n' +
+    // 'Object { hour: 7, minute: 30, second: 0 }\n' +
+    // 'shop-edit-and-publish-events.component.ts:93:12\n' +
+    // 'testt boies shop-edit-and-publish-events.component.ts:94:12\n' +
+    // 'Object { year: 2019, month: 11, day: 15 } "
+    const theNewEvent = {}
+    const startTime = new Date();
+    startTime.setFullYear(this.newEventStartDate.year);
+    startTime.setMonth(this.newEventStartDate.month-1);
+    startTime.setDate(this.newEventStartDate.day);
+    startTime.setHours(this.newEventStartTime.hour, this.newEventStartTime.minute);
+
+    const endTime = new Date();
+    endTime.setFullYear(this.newEventEndDate.year);
+    endTime.setMonth(this.newEventEndDate.month-1);
+    endTime.setDate(this.newEventEndDate.day);
+    endTime.setHours(this.newEventEndTime.hour, this.newEventEndTime.minute);
+
+
+    theNewEvent['end_time'] = endTime;
+    theNewEvent['start_time'] = startTime;
+    if (this.newEventOutsideOrInside) {
+      theNewEvent['inside_or_outside'] = 'outside'
+
+    }
+
+    else{
+      theNewEvent['inside_or_outside'] = 'inside'
+    }
+
+    theNewEvent['notes'] = this.newEventNotes
+    theNewEvent['shop_name'] = this.currentShop.name
+    theNewEvent['shop_id'] = this.shop_id;
+    theNewEvent['twitter'] = this.currentShop.twitter;
+    theNewEvent['instagram'] = this.currentShop.instagram;
+    theNewEvent['website'] = this.currentShop.website;
+    theNewEvent['email'] = this.currentShop.email;
+    theNewEvent['location'] = this.newLocation;
+    theNewEvent['tags'] = this.currentShop.tags;
+
+
+    this.db.doc('shop_events/' + this.newEventId() ).set(theNewEvent).finally(() => {
+      console.log('saved???');
+    });
+
+    console.log('wtf');
+    console.log(this.newEventOutsideOrInside);
+    console.log('wtff')
+  }
+
+
+  newEventId() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
   }
 
 }
