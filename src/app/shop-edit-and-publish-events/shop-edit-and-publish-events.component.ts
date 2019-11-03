@@ -13,6 +13,16 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
   currentShop: any;
   newTag:string;
   shop_id: string;
+
+
+
+  newEventStartDate: any;
+  newEventStartTime: any;
+  newEventEndDate: any;
+  newEventEndTime: any;
+  newEventNotes: string;
+  newEventOutsideOrInside: boolean;
+
   constructor(private db: AngularFirestore, private auth: AngularFireAuth, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -75,5 +85,15 @@ export class ShopEditAndPublishEventsComponent implements OnInit {
       console.log('saved???');
     });
   }
+
+  saveEvent() {
+    console.log(this.newEventEndDate);
+    console.log(this.newEventEndTime);
+    console.log(this.newEventStartDate);
+    console.log(this.newEventStartTime);
+    console.log(this.newEventNotes);
+    console.log(this.newEventEndDate);
+  }
+
 }
 
